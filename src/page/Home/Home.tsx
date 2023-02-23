@@ -225,9 +225,9 @@ export default function Home({}: Props) {
     fetchAllProject();
   }, []);
   return (
-    <main className="p-32">
+    <main className="">
       <h1 className="text-3xl font-bold ">Project management</h1>
-      <Table columns={columns} dataSource={data} />
+      <Table pagination={{ pageSize: 6 }} columns={columns} dataSource={data} />
     </main>
   );
 }

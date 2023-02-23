@@ -1,23 +1,81 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
-import Header from "../components/Header/Header";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+// import Header from "../components/Header/Header";
 import { RootState } from "../redux/configStore";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  PlusSquareOutlined,
+  HomeOutlined,
+  PlusCircleOutlined,
+} from "@ant-design/icons";
+import { Layout, Menu, theme } from "antd";
 
+const { Header, Sider, Content } = Layout;
 type Props = {};
 
 export default function TeamPlateHome({}: Props) {
   const navigate = useNavigate();
+
   const { userInfo } = useSelector((state: RootState) => state.authSlice);
   useEffect(() => {
     if (!userInfo) {
       navigate("/user/login");
     }
   });
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
   return (
-    <main>
-      <Header />
-      <Outlet />
-    </main>
+    <Layout className="w-screen h-screen">
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={["1"]}
+          items={[
+            {
+              key: "1",
+              icon: <HomeOutlined />,
+              label: <NavLink to={"/home"}>Home</NavLink>,
+            },
+            {
+              key: "2",
+              icon: <PlusCircleOutlined />,
+              label: <NavLink to={"/createProject"}>Create Project</NavLink>,
+            },
+            {
+              key: "3",
+              icon: <PlusSquareOutlined />,
+              label: <NavLink to={"/createTask"}>Create Task</NavLink>,
+            },
+          ]}
+        />
+      </Sider>
+      <Layout className="site-layout">
+        <Header style={{ padding: 0, background: colorBgContainer }}>
+          {React.createElement(
+            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+            {
+              className: "trigger",
+              onClick: () => setCollapsed(!collapsed),
+            }
+          )}
+        </Header>
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: 280,
+            background: colorBgContainer,
+          }}
+        >
+          <Outlet />
+        </Content>
+      </Layout>
+    </Layout>
   );
 }

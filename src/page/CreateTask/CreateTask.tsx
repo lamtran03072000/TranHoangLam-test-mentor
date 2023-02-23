@@ -222,12 +222,12 @@ export default function CreateTask({}: Props) {
   };
 
   return (
-    <main className="p-32">
+    <main className="text-xs">
       <h1 className="text-3xl font-bold  ">Create Task</h1>
-      <form onSubmit={handleCreateTask} className="space-y-8 mt-10">
+      <form onSubmit={handleCreateTask} className="space-y-2">
         {/* // Project  */}
         <div>
-          <label className="block text-xl w-full font-bold">Project</label>
+          <label className="block w-full font-bold">Project</label>
 
           <select
             onChange={handleChangeValue}
@@ -241,7 +241,7 @@ export default function CreateTask({}: Props) {
         </div>
         {/* TaskName */}
         <div>
-          <label className="block text-xl w-full font-bold">Task name</label>
+          <label className="block w-full font-bold">Task name</label>
           <input
             onChange={handleChangeValue}
             name="taskName"
@@ -252,7 +252,7 @@ export default function CreateTask({}: Props) {
         </div>
         {/* Status */}
         <div>
-          <label className="block text-xl w-full font-bold">Status</label>
+          <label className="block w-full font-bold">Status</label>
           <select
             value={dataCreateTask.statusId}
             onChange={handleChangeValue}
@@ -266,7 +266,7 @@ export default function CreateTask({}: Props) {
         <div className="flex space-x-10">
           {/* Priority */}
           <div className="flex-1">
-            <label className="block text-xl w-full font-bold">Priority</label>
+            <label className="block w-full font-bold">Priority</label>
 
             <select
               value={dataCreateTask.priorityId}
@@ -280,7 +280,7 @@ export default function CreateTask({}: Props) {
           </div>
           {/* Tasktype */}
           <div className="flex-1">
-            <label className="block text-xl w-full font-bold">Task Type</label>
+            <label className="block w-full font-bold">Task Type</label>
 
             <select
               value={dataCreateTask.typeId}
@@ -295,7 +295,7 @@ export default function CreateTask({}: Props) {
         </div>
         {/* Assign */}
         <div>
-          <label className="block text-xl w-full font-bold">Assigness</label>
+          <label className="block w-full font-bold">Assigness</label>
           <Space style={{ width: "100%" }} direction="vertical">
             <Select
               mode="multiple"
@@ -310,9 +310,7 @@ export default function CreateTask({}: Props) {
         <div className="flex space-x-10">
           {/* Original Estimate */}
           <div className="flex-1">
-            <label className="block text-xl w-full font-bold">
-              Original Estimate
-            </label>
+            <label className="block w-full font-bold">Original Estimate</label>
             <input
               value={dataCreateTask.originalEstimate}
               onChange={handleChangeValue}
@@ -324,9 +322,7 @@ export default function CreateTask({}: Props) {
           <div className="flex-1 flex space-x-10">
             {/* Time spent */}
             <div className="flex-1">
-              <label className="block text-xl w-full font-bold">
-                Time spent
-              </label>
+              <label className="block w-full font-bold">Time spent</label>
               <input
                 value={dataCreateTask.timeTrackingSpent}
                 onChange={handleChangeValue}
@@ -337,9 +333,7 @@ export default function CreateTask({}: Props) {
             </div>
             {/* Time remaining */}
             <div className="flex-1">
-              <label className="block text-xl w-full font-bold">
-                Time remaining
-              </label>
+              <label className="block w-full font-bold">Time remaining</label>
               <input
                 value={dataCreateTask.timeTrackingRemaining}
                 onChange={handleChangeValue}
@@ -352,7 +346,7 @@ export default function CreateTask({}: Props) {
         </div>
         {/* Description */}
         <div>
-          <label className="block text-xl w-full font-bold">Description</label>
+          <label className="block w-full font-bold">Description</label>
           <TextEditter
             description={dataCreateTask.description}
             handleChangeDescription={handleChangeDescription}

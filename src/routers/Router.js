@@ -1,6 +1,5 @@
 import Login from "../page/Login/Login";
 import Home from "../page/Home/Home";
-import Assign from "../page/Assign/Assign";
 import CreateProject from "../page/CreateProject/CreateProject";
 import UpdateProject from "../page/UpdateProject/UpdateProject";
 import CreateTask from "../page/CreateTask/CreateTask";
@@ -17,7 +16,6 @@ export const Routers = {
       path: "/home",
       element: <Home />,
     },
-    { path: "/user/Assign", element: <Assign /> },
     { path: "/createProject", element: <CreateProject /> },
     { path: "/updateProject/:projectId", element: <UpdateProject /> },
     {

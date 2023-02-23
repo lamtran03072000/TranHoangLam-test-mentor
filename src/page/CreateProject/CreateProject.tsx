@@ -79,7 +79,7 @@ export default function CreateProject({}: Props) {
     }
   };
   return (
-    <main className="px-20 space-y-6">
+    <main className=" space-y-6">
       <h1 className="text-3xl font-bold  ">CreateProject</h1>
       <form onSubmit={handleCreateProject} className="space-y-3">
         <div>
