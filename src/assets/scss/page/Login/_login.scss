@@ -1,0 +1,64 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  @apply bg-pink-200 py-16 pr-20;
+  .login-left {
+    width: 30%;
+    height: 100%;
+    background: #f2f8fd;
+  }
+  .login-right {
+    width: 70%;
+    height: 100%;
+    padding: 100px;
+    background: #ffffff;
+  }
+  .login-form {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    height: 100%;
+    width: 27%;
+    @apply py-24;
+    .login-title {
+      font-family: "Fredoka One", cursive;
+      @apply text-3xl font-normal;
+    }
+    .form-item {
+      .input {
+        position: relative;
+
+        &__label {
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          white-space: nowrap;
+          transform: translate(0, 0);
+          transform-origin: 0 0;
+          transition: transform 120ms ease-in;
+          line-height: 1.2;
+          @apply text-pink-500;
+        }
+        &__field {
+          box-sizing: border-box;
+          display: block;
+          width: 100%;
+          border: 1px solid;
+          @apply border-pink-500;
+
+          border-radius: 5px;
+          padding: 8px 10px 8px 10px;
+          outline: none;
+          &:focus,
+          &:not(:placeholder-shown) {
+            & + .input__label {
+              transform: translate(0, -80%) scale(0.8);
+              @apply text-pink-500;
+              background: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

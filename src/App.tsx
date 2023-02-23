@@ -1,12 +1,22 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Routers } from "./routers/Router";
+import TeamPlateHome from "./templates/TeamPlateHome";
+import Login from "./page/Login/Login";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold bg-red-500 underline">Hello world!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/user/login" />} />
+        <Route path="/user/login" element={<Login />} />
+        <Route element={<TeamPlateHome />}>
+          {Routers.page.map((r, i) => (
+            <Route key={i} path={r.path} element={r.element} />
+          ))}
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

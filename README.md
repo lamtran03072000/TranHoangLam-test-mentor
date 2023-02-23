@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+1. Bạn mentor được các giờ nào trong tuần ?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+• Các buổi trong tuần từ t2 – t6 (bđ từ 18h30 – 21h30) : rảnh tất cả
+• T7 – CN: Sáng 8h30 -> 11h30 và 14h30 -> 17 h30 : rảnh tất cả
 
-## Available Scripts
+2. Trong 1 ngày bạn dành ra bao nhiêu thời gian để check ib của học viên khi các bạn đó có thắc mắc ib trên group hoặc inbox riêng ?
 
-In the project directory, you can run:
+- Trong 1 ngày em có thể giành được từ 1- 2 giờ để trả lời học viên , vì công việc của em làm remote nên khá thoải mái
 
-### `npm start`
+3. Nếu nhận được 1 lỗi phát sinh 500 error server bạn sẽ xử lý như thế nào khi gặp những câu hỏi từ học viên, liệt kê các bước bạn sẽ xử lý ?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+• 1.Kiểm tra lỗi: Đầu tiên, em sẽ nói học viên gửi source code để kiểm tra xem lỗi do học viên code sai/thiếu hay do server.
+• 2.Trả lời học viên:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Nếu lỗi do học viên code sai thì chỉ ra chỗ sai, cách fix cho học viên. => tới bước 4
+- Nếu lỗi do server thì báo lại với học viên là nhờ hệ thống kiểm tra, sẽ báo lại cho học viên ngay khi có kết quả. => tới bước 3
+  • 3. Cập nhật với học viên: Khi lỗi đã được khắc phục, em sẽ thông báo với học viên về tình trạng của server, lỗi đã được sửa chữa và tình trạng hoạt động hiện tại của hệ thống.
+  • 4. Tránh lỗi tái phát: Nếu đã xác định được nguyên nhân của lỗi, em sẽ học hỏi và ghi nhớ để đề ra các biện pháp cần thiết để đảm bảo tránh lỗi tái phát trong tương lai.
 
-### `npm test`
+4. Nếu được sắp vào khung giờ cố định thì công việc chính của bạn có ảnh hưởng đến việc mentor hay không ?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Công việc chính của em sẽ không ảnh hưởng tới việc làm mentor, vì em làm intern remote nên không quá áp đặt nặng và công ty không giới hạn thời gian làm việc cố định , chỉ cần xong việc được giao trong một tuần đó là được
 
-### `npm run build`
+5. Tại sao bạn apply công việc này ?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Thiệc ra em rất thích được chỉ những kiến thức của mình cho người khác như giáo viên á, nhưng dòng đời đưa đẩy nên em mới qua ngành này, rất may là em rất thích công việc code này, nên từ lúc em bắt đầu học ở trung tâm em đã có ý định quyết tâm để có thể được làm mentor của cybersoft, mặc dù bài cuối khoá em phải làm 1 mình nhưng em vẫn cố gắng làm để có thể hoàn thành khoá học. Nên em rất hi vọng mình có thể được đảm nhiệm vị trí mentor này.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Em học khoá cybersoft BC33 ở chi nhánh Thủ Đức do anh Sỹ (my idol) làm giảng viên và chị Thy, anh Đức làm mentor. Nên em cũng rất muốn có cơ hội được làm việc ở chi nhánh Thủ Đức ạ.
