@@ -23,7 +23,7 @@ export default function CreateProject({}: Props) {
   const navigate = useNavigate();
   const [project, setProject] = useState<CreateProjectState>({
     projectName: "",
-    description: "Trung tâm cybersoft mãi đỉnh",
+    description: "",
     categoryId: 0,
     alias: "",
   });

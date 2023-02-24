@@ -33,10 +33,14 @@ const AuthSlice = createSlice({
       state.userInfo = action.payload;
       settings.setStorageJson(USER_INFO, action.payload);
     },
+    logOutUser: (state: AuthState, action: PayloadAction<null>) => {
+      state.userInfo = null;
+      settings.clearStorage(USER_INFO);
+    },
   },
 });
 
-export const { setUserInfo } = AuthSlice.actions;
+export const { setUserInfo, logOutUser } = AuthSlice.actions;
 
 export const postLoginAsync = (user: UserState) => {
   return async (dispatch: DispatchType) => {

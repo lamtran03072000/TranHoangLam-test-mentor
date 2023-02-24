@@ -2,8 +2,44 @@ import React, { useEffect, useState } from "react";
 import { projectApi } from "../../services/api/ProjectApi";
 import { message, Select, SelectProps, Space } from "antd";
 import TextEditter from "../../components/TextEditter/TextEditter";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 export type AllProject = Project[];
+
+// type result data when getTaskId
+export interface ResultTaskUpdate {
+  priorityTask: PriorityTask;
+  taskTypeDetail: TaskTypeDetail;
+  assigness: Assigness[];
+  lstComment: any[];
+  taskId: number;
+  taskName: string;
+  alias: string;
+  description: string;
+  statusId: string;
+  originalEstimate: number;
+  timeTrackingSpent: number;
+  timeTrackingRemaining: number;
+  typeId: number;
+  priorityId: number;
+  projectId: number;
+}
+
+export interface PriorityTask {
+  priorityId: number;
+  priority: string;
+}
+
+export interface TaskTypeDetail {
+  id: number;
+  taskType: string;
+}
+
+export interface Assigness {
+  id: number;
+  avatar: string;
+  name: string;
+  alias: string;
+}
 
 // Project
 export interface Project {
@@ -64,8 +100,9 @@ export interface User {
   phoneNumber: string;
 }
 
-export type DataCreateTask = {
+export interface DataUpdateTask {
   listUserAsign: number[];
+  taskId: string;
   taskName: string;
   description: string;
   statusId: string;
@@ -75,17 +112,20 @@ export type DataCreateTask = {
   projectId: number;
   typeId: number;
   priorityId: number;
-};
+}
 type Props = {};
-
+type ParamType = {
+  taskId: string;
+};
 export default function UpdateTask({}: Props) {
+  const { taskId } = useParams<ParamType>();
   const navigate = useNavigate();
   const [allProject, setAllProject] = useState<AllProject>([]);
   const [allStatus, setAllStatus] = useState<AllStatus>([]);
   const [allPriority, setAllPriority] = useState<AllPriority>([]);
   const [allTaskType, setAllTaskType] = useState<AllTaskType>([]);
   const [usersAssign, setUsersAssign] = useState<SelectProps["options"]>([]);
-  const [dataCreateTask, setDataCreateTask] = useState<DataCreateTask>({
+  const [dataUpdateTask, setDataUpdateTask] = useState<DataUpdateTask>({
     listUserAsign: [0],
     taskName: "",
     description: "",
@@ -96,7 +136,31 @@ export default function UpdateTask({}: Props) {
     projectId: 0,
     typeId: 0,
     priorityId: 0,
+    taskId: "",
   });
+  const fetchDateProjectUpdate = async () => {
+    try {
+      if (taskId) {
+        const res = await projectApi.getTaskDetail(parseInt(taskId));
+        const data: ResultTaskUpdate = res.data.content;
+        setDataUpdateTask({
+          taskId: data.taskId.toString(),
+          description: data.description,
+          listUserAsign: data.assigness.map((d) => d.id),
+          originalEstimate: data.originalEstimate,
+          priorityId: data.priorityId,
+          projectId: data.projectId,
+          statusId: data.statusId,
+          taskName: data.taskName,
+          timeTrackingRemaining: data.timeTrackingRemaining,
+          timeTrackingSpent: data.timeTrackingSpent,
+          typeId: data.typeId,
+        });
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
   const fetchAllProject = async () => {
     try {
       const res = await projectApi.getAllProject();
@@ -149,6 +213,7 @@ export default function UpdateTask({}: Props) {
     fetchAllPriority();
     fetchAllTaskType();
     fetchAllUser();
+    fetchDateProjectUpdate();
   }, []);
   const renderProject = () =>
     allProject.map((p) => {
@@ -184,38 +249,38 @@ export default function UpdateTask({}: Props) {
     });
   const handleChangeUserAssign = (value: number[]) => {
     if (value.length) {
-      setDataCreateTask({ ...dataCreateTask, listUserAsign: value });
+      setDataUpdateTask({ ...dataUpdateTask, listUserAsign: value });
     }
   };
   const handleChangeDescription = (editor: string) => {
     if (editor) {
-      setDataCreateTask({ ...dataCreateTask, description: editor });
+      setDataUpdateTask({ ...dataUpdateTask, description: editor });
     }
   };
   const handleChangeValue = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     let { name, value } = e.target;
-    setDataCreateTask({ ...dataCreateTask, [name]: value });
+    setDataUpdateTask({ ...dataUpdateTask, [name]: value });
   };
   const handleCreateTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    for (const key in dataCreateTask) {
-      if (dataCreateTask.hasOwnProperty(key)) {
-        if (!dataCreateTask[key as keyof DataCreateTask]) {
+    for (const key in dataUpdateTask) {
+      if (dataUpdateTask.hasOwnProperty(key)) {
+        if (!dataUpdateTask[key as keyof DataUpdateTask]) {
           message.error(`${key} cannot be blank`);
           return;
         }
-        if (!dataCreateTask.listUserAsign.length) {
+        if (!dataUpdateTask.listUserAsign.length) {
           message.error(`List User Assign cannot be blank`);
           return;
         }
       }
     }
     try {
-      const res = await projectApi.createTask(dataCreateTask);
+      const res = await projectApi.updateTask(dataUpdateTask);
       console.log("res: ", res);
-      message.success("Create task success");
+      message.success("Update task success");
       navigate("/home");
     } catch (error: any) {
       message.error(error.message);
@@ -223,16 +288,16 @@ export default function UpdateTask({}: Props) {
   };
 
   return (
-    <main className="p-32">
-      <h1 className="text-3xl font-bold  ">Create Task</h1>
-      <form onSubmit={handleCreateTask} className="space-y-8 mt-10">
+    <main className="text-xs">
+      <h1 className="text-3xl font-bold  ">Update Task</h1>
+      <form onSubmit={handleCreateTask} className="space-y-2">
         {/* // Project  */}
         <div>
-          <label className="block text-xl w-full font-bold">Project</label>
+          <label className="block w-full font-bold">Project</label>
 
           <select
             onChange={handleChangeValue}
-            value={dataCreateTask.projectId}
+            value={dataUpdateTask.projectId}
             name="projectId"
             className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-gray-400"
           >
@@ -242,20 +307,20 @@ export default function UpdateTask({}: Props) {
         </div>
         {/* TaskName */}
         <div>
-          <label className="block text-xl w-full font-bold">Task name</label>
+          <label className="block w-full font-bold">Task name</label>
           <input
             onChange={handleChangeValue}
             name="taskName"
-            value={dataCreateTask.taskName}
+            value={dataUpdateTask.taskName}
             type="text"
             className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-gray-400"
           />
         </div>
         {/* Status */}
         <div>
-          <label className="block text-xl w-full font-bold">Status</label>
+          <label className="block w-full font-bold">Status</label>
           <select
-            value={dataCreateTask.statusId}
+            value={dataUpdateTask.statusId}
             onChange={handleChangeValue}
             name="statusId"
             className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-gray-400"
@@ -267,10 +332,10 @@ export default function UpdateTask({}: Props) {
         <div className="flex space-x-10">
           {/* Priority */}
           <div className="flex-1">
-            <label className="block text-xl w-full font-bold">Priority</label>
+            <label className="block w-full font-bold">Priority</label>
 
             <select
-              value={dataCreateTask.priorityId}
+              value={dataUpdateTask.priorityId}
               onChange={handleChangeValue}
               name="priorityId"
               className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-gray-400"
@@ -281,10 +346,10 @@ export default function UpdateTask({}: Props) {
           </div>
           {/* Tasktype */}
           <div className="flex-1">
-            <label className="block text-xl w-full font-bold">Task Type</label>
+            <label className="block w-full font-bold">Task Type</label>
 
             <select
-              value={dataCreateTask.typeId}
+              value={dataUpdateTask.typeId}
               onChange={handleChangeValue}
               name="typeId"
               className="block w-full px-3 py-2 border border-gray-300 rounded focus:outline-gray-400"
@@ -296,10 +361,11 @@ export default function UpdateTask({}: Props) {
         </div>
         {/* Assign */}
         <div>
-          <label className="block text-xl w-full font-bold">Assigness</label>
+          <label className="block w-full font-bold">Assigness</label>
           <Space style={{ width: "100%" }} direction="vertical">
             <Select
               mode="multiple"
+              value={dataUpdateTask.listUserAsign}
               allowClear
               style={{ width: "100%" }}
               placeholder="Please select"
@@ -311,11 +377,9 @@ export default function UpdateTask({}: Props) {
         <div className="flex space-x-10">
           {/* Original Estimate */}
           <div className="flex-1">
-            <label className="block text-xl w-full font-bold">
-              Original Estimate
-            </label>
+            <label className="block w-full font-bold">Original Estimate</label>
             <input
-              value={dataCreateTask.originalEstimate}
+              value={dataUpdateTask.originalEstimate}
               onChange={handleChangeValue}
               name="originalEstimate"
               type="number"
@@ -325,11 +389,9 @@ export default function UpdateTask({}: Props) {
           <div className="flex-1 flex space-x-10">
             {/* Time spent */}
             <div className="flex-1">
-              <label className="block text-xl w-full font-bold">
-                Time spent
-              </label>
+              <label className="block w-full font-bold">Time spent</label>
               <input
-                value={dataCreateTask.timeTrackingSpent}
+                value={dataUpdateTask.timeTrackingSpent}
                 onChange={handleChangeValue}
                 name="timeTrackingSpent"
                 type="number"
@@ -338,11 +400,9 @@ export default function UpdateTask({}: Props) {
             </div>
             {/* Time remaining */}
             <div className="flex-1">
-              <label className="block text-xl w-full font-bold">
-                Time remaining
-              </label>
+              <label className="block w-full font-bold">Time remaining</label>
               <input
-                value={dataCreateTask.timeTrackingRemaining}
+                value={dataUpdateTask.timeTrackingRemaining}
                 onChange={handleChangeValue}
                 name="timeTrackingRemaining"
                 type="number"
@@ -353,15 +413,15 @@ export default function UpdateTask({}: Props) {
         </div>
         {/* Description */}
         <div>
-          <label className="block text-xl w-full font-bold">Description</label>
+          <label className="block w-full font-bold">Description</label>
           <TextEditter
-            description={dataCreateTask.description}
+            description={dataUpdateTask.description}
             handleChangeDescription={handleChangeDescription}
           />
         </div>
 
         <button className="border-blue-400 px-3 py-2 rounded text-blue-400 border">
-          Create Task
+          Update Task
         </button>
       </form>
     </main>

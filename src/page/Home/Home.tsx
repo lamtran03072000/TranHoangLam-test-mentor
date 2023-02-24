@@ -134,7 +134,7 @@ export default function Home({}: Props) {
     },
     {
       title: "Project Name",
-      width: "10%",
+      width: "15%",
       dataIndex: "projectName",
       key: "projectName",
       render: (projectName) => {
@@ -144,7 +144,7 @@ export default function Home({}: Props) {
     },
     {
       title: "Category Name",
-      width: "10%",
+      width: "15%",
 
       dataIndex: "categoryName",
       key: "categoryName",
@@ -153,7 +153,7 @@ export default function Home({}: Props) {
       },
     },
     {
-      title: "creator",
+      title: "Creator",
       width: "10%",
 
       dataIndex: "creator",
@@ -163,8 +163,8 @@ export default function Home({}: Props) {
       },
     },
     {
-      title: "members",
-      width: "25%",
+      title: "Members",
+      width: "20%",
 
       key: "members",
       dataIndex: "members",
@@ -185,7 +185,7 @@ export default function Home({}: Props) {
     {
       title: "Action",
       key: "action",
-      width: "15%",
+      width: "10%",
 
       render: (_, record) => (
         <div className="space-x-3">
@@ -195,9 +195,6 @@ export default function Home({}: Props) {
           >
             update
           </NavLink>
-          <button className="bg-red-500 text-white px-3 py-2 rounded hover:bg-red-600 duration-200">
-            Delete
-          </button>
         </div>
       ),
     },
@@ -225,9 +222,14 @@ export default function Home({}: Props) {
     fetchAllProject();
   }, []);
   return (
-    <main className="">
+    <main className="w-full h-full flex flex-col items-center justify-center space-y-7">
       <h1 className="text-3xl font-bold ">Project management</h1>
-      <Table pagination={{ pageSize: 6 }} columns={columns} dataSource={data} />
+      <Table
+        scroll={{ y: 300 }}
+        pagination={{ pageSize: 6 }}
+        columns={columns}
+        dataSource={data}
+      />
     </main>
   );
 }

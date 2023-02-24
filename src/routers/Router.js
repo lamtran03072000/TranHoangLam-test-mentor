@@ -23,7 +23,7 @@ export const Routers = {
       element: <CreateTask />,
     },
     {
-      path: "/updateTask",
+      path: "/updateTask/:taskId",
       element: <UpdateTask />,
     },
   ],

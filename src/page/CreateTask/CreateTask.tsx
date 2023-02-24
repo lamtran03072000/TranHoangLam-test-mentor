@@ -4,9 +4,9 @@ import { message, Select, SelectProps, Space } from "antd";
 import TextEditter from "../../components/TextEditter/TextEditter";
 import { useNavigate } from "react-router-dom";
 type Props = {};
-export type AllProject = Project[];
 
 // Project
+export type AllProject = Project[];
 export interface Project {
   members: Member[];
   creator: Creator;

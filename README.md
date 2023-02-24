@@ -23,6 +23,6 @@
 
 5. Tại sao bạn apply công việc này ?
 
-- Thiệc ra em rất thích được chỉ những kiến thức của mình cho người khác như giáo viên á, nhưng dòng đời đưa đẩy nên em mới qua ngành này, rất may là em rất thích công việc code này, nên từ lúc em bắt đầu học ở trung tâm em đã có ý định quyết tâm để có thể được làm mentor của cybersoft, mặc dù bài cuối khoá em phải làm 1 mình nhưng em vẫn cố gắng làm để có thể hoàn thành khoá học. Nên em rất hi vọng mình có thể được đảm nhiệm vị trí mentor này.
+- Thiệc ra em rất thích được chỉ những kiến thức của mình cho người khác như giáo viên á, nhưng dòng đời đưa đẩy nên em mới qua ngành này, rất may là em rất thích công việc code này, nên từ lúc em bắt đầu học ở trung tâm em đã có ý định quyết tâm để có thể được làm mentor của cybersoft, mặc dù bài cuối khoá em phải làm 1 mình nhưng em vẫn cố gắng làm để có thể hoàn thành khoá học. Nên em rất hi vọng mình có thể được đảm nhiệm vị trí mentor này và cũng rất muốn được chia sẽ kiến thức đến những học viên của trung tâm .
 
 - Em học khoá cybersoft BC33 ở chi nhánh Thủ Đức do anh Sỹ (my idol) làm giảng viên và chị Thy, anh Đức làm mentor. Nên em cũng rất muốn có cơ hội được làm việc ở chi nhánh Thủ Đức ạ.

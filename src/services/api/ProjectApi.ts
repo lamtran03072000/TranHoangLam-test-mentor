@@ -1,6 +1,7 @@
 import { CreateProjectState } from "../../page/CreateProject/CreateProject";
 import { DataCreateTask } from "../../page/CreateTask/CreateTask";
 import { UpdateProjectState } from "../../page/UpdateProject/UpdateProject";
+import { DataUpdateTask } from "../../page/UpdateTask/UpdateTask";
 import { https } from "../urlConfig";
 
 export const projectApi = {
@@ -35,6 +36,14 @@ export const projectApi = {
   getAllTaskType: () => {
     let uri = "/api/TaskType/getAll";
     return https.get(uri);
+  },
+  getTaskDetail: (taskId: number) => {
+    let uri = `/api/Project/getTaskDetail?taskId=${taskId}`;
+    return https.get(uri);
+  },
+  updateTask: (data: DataUpdateTask) => {
+    let uri = "/api/Project/updateTask";
+    return https.post(uri, data);
   },
   getAllUser: () => {
     let uri = "/api/Users/getUser";

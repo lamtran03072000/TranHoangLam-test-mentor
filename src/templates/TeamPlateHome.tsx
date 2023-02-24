@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 // import Header from "../components/Header/Header";
-import { RootState } from "../redux/configStore";
+import { DispatchType, RootState } from "../redux/configStore";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PlusSquareOutlined,
   HomeOutlined,
   PlusCircleOutlined,
+  CloudUploadOutlined,
+  UploadOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
+import { logOutUser } from "../redux/AuthReducer/authSlice";
 
 const { Header, Sider, Content } = Layout;
 type Props = {};
 
 export default function TeamPlateHome({}: Props) {
   const navigate = useNavigate();
-
+  const dispatch: DispatchType = useDispatch();
   const { userInfo } = useSelector((state: RootState) => state.authSlice);
   useEffect(() => {
     if (!userInfo) {
@@ -28,7 +32,9 @@ export default function TeamPlateHome({}: Props) {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-
+  const handleLogout = () => {
+    dispatch(logOutUser(null));
+  };
   return (
     <Layout className="w-screen h-screen">
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -51,6 +57,27 @@ export default function TeamPlateHome({}: Props) {
               key: "3",
               icon: <PlusSquareOutlined />,
               label: <NavLink to={"/createTask"}>Create Task</NavLink>,
+            },
+            {
+              key: "4",
+              icon: <CloudUploadOutlined />,
+              label: (
+                <NavLink to={"/updateProject/11599"}>Update Project</NavLink>
+              ),
+            },
+            {
+              key: "5",
+              icon: <UploadOutlined />,
+              label: <NavLink to={"/updateTask/9142"}>Update Task</NavLink>,
+            },
+            {
+              key: "6",
+              icon: <LogoutOutlined />,
+              label: (
+                <NavLink onClick={handleLogout} to={"/user/login"}>
+                  Log Out
+                </NavLink>
+              ),
             },
           ]}
         />
