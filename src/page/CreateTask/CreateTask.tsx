@@ -212,8 +212,7 @@ export default function CreateTask({}: Props) {
       }
     }
     try {
-      const res = await projectApi.createTask(dataCreateTask);
-      console.log("res: ", res);
+      await projectApi.createTask(dataCreateTask);
       message.success("Create task success");
       navigate("/home");
     } catch (error: any) {
