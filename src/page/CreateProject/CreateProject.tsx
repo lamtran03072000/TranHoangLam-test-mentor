@@ -80,10 +80,12 @@ export default function CreateProject({}: Props) {
   };
   return (
     <main className=" space-y-6">
-      <h1 className="text-3xl font-bold  ">CreateProject</h1>
+      <h1 className="text-3xl font-bold  ">Create Project</h1>
       <form onSubmit={handleCreateProject} className="space-y-3">
         <div>
-          <label className="block text-xl w-full ">Project Name</label>
+          <label className="block text-xl w-full font-bold ">
+            Project Name
+          </label>
           <input
             value={project.projectName}
             onChange={handleChangeValue}
@@ -93,7 +95,7 @@ export default function CreateProject({}: Props) {
           />
         </div>
         <div>
-          <label className="block text-xl w-full ">Alias</label>
+          <label className="block text-xl w-full font-bold  ">Alias</label>
           <input
             value={project.alias}
             onChange={handleChangeValue}

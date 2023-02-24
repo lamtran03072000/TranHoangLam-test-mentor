@@ -176,7 +176,9 @@ export default function UpdateProject({}: Props) {
       <h1 className="text-3xl font-bold  ">Update Project</h1>
       <form onSubmit={handleUpdateProject} className="space-y-3">
         <div>
-          <label className="block text-xl w-full ">Project Name</label>
+          <label className="block text-xl font-bold  w-full ">
+            Project Name
+          </label>
           <input
             value={project.projectName}
             onChange={handleChangeValue}

@@ -157,8 +157,8 @@ export default function UpdateTask({}: Props) {
           typeId: data.typeId,
         });
       }
-    } catch (error) {
-      console.log("error: ", error);
+    } catch (error: any) {
+      message.error(error.message);
     }
   };
   const fetchAllProject = async () => {
@@ -279,7 +279,6 @@ export default function UpdateTask({}: Props) {
     }
     try {
       const res = await projectApi.updateTask(dataUpdateTask);
-      console.log("res: ", res);
       message.success("Update task success");
       navigate("/home");
     } catch (error: any) {

@@ -123,7 +123,7 @@ export default function Home({}: Props) {
   });
   const columns: ColumnsType<DataType> = [
     {
-      title: "id",
+      title: "Id",
       width: "10%",
       dataIndex: "id",
       key: "id",
@@ -223,7 +223,7 @@ export default function Home({}: Props) {
   }, []);
   return (
     <main className="w-full h-full flex flex-col items-center justify-center space-y-7">
-      <h1 className="text-3xl font-bold ">Project management</h1>
+      <h1 className="text-3xl font-bold ">Project Management</h1>
       <Table
         scroll={{ y: 300 }}
         pagination={{ pageSize: 6 }}
